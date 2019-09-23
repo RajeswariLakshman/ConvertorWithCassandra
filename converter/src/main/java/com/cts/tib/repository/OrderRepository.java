@@ -1,17 +1,18 @@
-package com.java.repository;
+package com.cts.tib.repository;
 
-import com.java.entity.Order;
+import java.util.List;
 
 import org.springframework.data.cassandra.repository.CassandraRepository;
-import org.springframework.data.cassandra.repository.Query;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface OrderRepository extends CassandraRepository<Order, String> {
-    //
-    @Query("select * from order where type = ?0")
-    Iterable<Order> findByType(String type);
+import com.cts.tib.entity.Order;
 
-    void save(Order order, String orderId);
+@Repository
+public interface OrderRepository extends CassandraRepository<Order,String> {
+    //
+    List<Order> findByType(String type);
+
+    Order save(Order order);
+    List<Order> findAll();
 
 }
